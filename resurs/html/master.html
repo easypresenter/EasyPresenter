@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <link rel="stylesheet" href="../public/css/master.css">
+    <meta charset="utf-8">
+    <title>Master</title>
+  </head>
+  <body >
+    <div class="body" id="master">
+      <nav>
+        <ul id="nav_ul">
+          <li id="Live"><img v-on:click='live' src="../public/imgs/004-minimize.png" alt=""></li>
+          <li id='conf'><img @click='configs' src="../public/imgs/006-tools.png"></li>
+          <li id="min"><img v-on:click='minimize_maximize' src="../public/imgs/002-minimize-1.png" alt="minimisar-maximizar"></li>
+          <li id="edit"><img @click='edi'  src="../public/imgs/layers(1).png" alt=""></li>
+          <li id="cerrar"><img v-on:click='close' src="../public/imgs/cancel.png" alt="cerrar"></li>      
+        </ul>
+      </nav>
+      <div class="menu">
+        <nav id="lateral">
+          <ul id="nav_ul_2">
+            
+            <li id="s" @click="s"><img src="../public/imgs/music.png"></li>
+            
+            <li id="b" @click="b"><img src="../public/imgs/libro-abierto.png"></li>
+            
+            <li id="p" @click="p"><img src="../public/imgs/presentacion.png"></li>
+            
+            <li id="m" @click="m"><img src="../public/imgs/galeria.png"></li>
+        </ul>
+        </nav>
+        <div class="control">
+          <section id="style-2" class="scrollbar">
+            <div class="force-overflow">         
+              <div v-if="listas">
+                <span v-for="lista in listas ">
+                  <button id='btn' @click='select(lista.$.b)'><p>{{lista.$.a}}- {{lista._}}</p></button>
+                  </span>
+                </div>
+              </div>
+          </section>
+          <div id="prelive">
+            <div id="Live_main">
+              <!-- start -->
+              <div id="header"><p>{{header}}</p></div>
+              <div id="texto"><p id="primari">{{primari}}</p></div>
+              <div id='foo'><p>{{footer}}</p></div>
+              <!-- fine -->
+            </div>
+          </div>
+        </div>
+        <footer id="foteer">
+          <section v-if='opcion == 1' id="biblia">
+              <div id="bloque1">
+              <p>Busqueda</p>
+              <input id="busquedatxt" type="text" name="Busqueda" v-model="input" @keyup.13="update" autofocus placeholder="Busqueda">
+              <button  id="buscarr" name="buscar" @click="update">Buscar</button>
+              <hr style="    display: inline-block;position: relative;margin: 0px;width: 104.5%;right: 1.5%;padding: 0px;top: 28%;">
+              <div>
+                <select v-model ="Uverion_" v-if="setings.versiones"> 
+                  <option disabled value = "" >{{setings.version_actual}}</option>
+                 <option v-for="version in setings.versiones">{{version}}</option> 
+                </select > 
+              </div> 
+            </div>
+            <hr>
+            <div id="bloque2">
+              <div id="style-3" class="scroll">
+                <div class="overflow">
+                  <span v-if="prebusqueda">
+                    <span v-for="pre in prebusqueda" >
+                      <button id='btn' @click='update_p(pre)'><p>{{pre}}</p></button>
+                    </sapn>   
+                  </span>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div id="bloque3">
+              <div id="b3">
+                <p class='txtSel'>Seleccion manual</p>
+                <span class='sapn_SM'>
+                  <p>libro</p>
+                  <select id="lib"  v-model ="lib" v-if="Libs" >
+                    <option v-for="Liba in Libs">{{Liba}}</option> 
+                  </select>
+                </span>
+                <span class='sapn_SM'>
+                  <p>capitulo</p>
+                <select  v-model ="cap" v-if="Caps" >
+                  <option v-for="cap in Caps">{{cap}}</option> 
+                </select>
+                </span>
+                <span class='sapn_SM'>
+                  <p>versiculo inicial</p>
+                  <select  v-model ="veri" v-if="vers" >
+                    <option v-for="ver in vers">{{ver}}</option> 
+                  </select>
+                </span>
+                <span class='sapn_SM'>
+                  <p>versiculo final</p>
+                  <select  v-model ="verf" v-if="vers" >
+                    <option v-for="ver in vers">{{ver}}</option> 
+                  </select>
+                </span >
+              </div>
+            </div>
+            <hr>
+            <div id="bloque4">
+              <span id="margenes">
+                <p>Posicion</p>
+                <p class="c_p">cabecera</p>
+                <p class="b_p">cuerpo</p>
+                <p class="p_p">pie de pagiana</p>
+              </span>
+              <span id="tamaño_letra">
+                <img @click="menos" src="../public/imgs/zoom-out.png">
+                <p>{{setings.size}}</p>
+                <img @click="mas" src="../public/imgs/zoom-in.png">
+              </span>
+            </div>
+          </section>
+         <section v-if='opcion == 2' class='songs'>
+          <div class="bloque1">
+            <p>Busqueda</p>
+            <input type="text" name="Busqueda" v-model="input_s" @keyup.13="update_s" autofocus placeholder="Busqueda">
+            <button  id="buscarr" name="buscar" @click="update_s">Buscar</button>
+          </div>
+          <hr>
+          <div id="bloque2">
+            <div id="style-3" class="scroll">
+              <div class="overflow">
+                <p>Lista de canciones</p>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div id="bloque3">
+            <div id="style-3" class="scroll">
+              <div class="overflow">
+                <p>lista de background</p>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div id="bloque4">
+            <p>previsualisacion</p>
+          </div>
+        </section>
+        <section v-if='opcion == 4' class='Media'>
+          <p>categorias generales</p>
+          <hr class="hr1">
+          <nav class="medianav">
+            <ul><li></li></ul>
+          </nav>
+          <hr class="hr2">
+          <p>ajustes</p>
+          <div></div>
+        </section>
+      </footer>
+    </div>
+  </div>
+  <script src="../js/vue.js" charset="utf-8"></script>
+  <script src="../js/master.js" charset="utf-8"></script>
+</body>
+</html>

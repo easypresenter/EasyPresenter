@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../js/vue.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../public/css/main.css">
+   <!--  <script src="../js/vista.js" charset="utf-8"></script> -->
+    <meta charset="utf-8">
+    <title>Vista</title>
+  </head>
+  <body>
+    <div id="Live_main">
+      <!-- start -->
+        <div id="bg">
+          <img v-if="bgurl" id='myVideo' :src="bgurl">
+          <!-- <video v-if='!type' id='myVideo' autoplay muted loop src="./Background.mp4"></video> -->
+          <div id='main'>
+              <!-- <p id="obj1">{{header.content}}</p> -->
+              <p id="obj2">{{act}}</p>
+              <!-- <p id="obj3">{{footer.content}}</p> -->
+          </div>
+        </div>
+      <!-- fine -->
+    </div>
+    <link rel="stylesheet" type="text/css" href="../public/css/vista.css">
+  </body>
+    <script src="../js/css.js" charset="utf-8"></script>
+    <script src="../js/vista.js" charset="utf-8"></script>
+</html>
